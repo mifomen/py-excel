@@ -1,14 +1,14 @@
 
 # %appdata%  Roaming\gspread\service_account.json
 import time
-import openpyxl  # pip install openpyxl
-import gspread  # pip install gspread
-
+import openpyxl  # pip install openpyxl gspread
+import gspread
+from datetime import datetime
 # starting time
 start = time.time()
 
 
-URL = "orders_monitoring_2023_04_13_14_12_20361946.xlsx"
+URL = "orders_monitoring_2023_04_18_13_07_20364910.xlsx"
 
 # from tkinter.filedialog import askopenfilename #запрос на указание файла с данными
 # URL = askopenfilename() # запрос на указание файла с данными
@@ -81,6 +81,11 @@ for i in range(33,36,1): #завтраки 8АБВ класс
   array.append(atlestCharToInt(sheetLocal['C' + str(i)].value))
 n = split(array,1)
 
+array = []
+for i in range(36,45,1): #завтраки 9АБВ 10АБВ 11АБВ класс
+  array.append(atlestCharToInt(sheetLocal['C' + str(i)].value))
+nn9 = split(array,1)
+
 
 gg = [] # формирование обед и полдник у 1АБВГД
 classLastNames = ['А','Б','В','Г','Д'];
@@ -98,13 +103,32 @@ for i in classLastNames: #созданеи нужной последовател
 gg = split(gg,2)
 # print(f"gg = {gg}")
 
+currentDay = datetime.now().day
+if currentDay <=10:
+  currentDay = f'0{currentDay}'
+currentMonth = datetime.now().month
+if currentMonth <= 10:
+  currentMonth = f'0{currentMonth}'
+
+currentYear = datetime.now().year
+today = f'{currentDay}.{currentMonth}.{currentYear}'
+#
+# today = "=TODAY()"
+
+# print('today ' + str(today))
+# today = split(today,1)
 #Ввод информации в гугл таблицу
+
+GoogleSheets.update("E1", today)
 GoogleSheets.batch_update([{
     'range': 'C8:D11',  # диапазон куда грузим
     'values': x,  #  загружаем обед и полдник у 2АБВГ
 },{
   'range': 'C3:D7',  # диапазон куда грузим
   'values': gg,  # загружаем обед и полдник у 1АБВГД
+},{
+  'range': 'G35:G43',  # диапазон куда грузим
+  'values': nn9,  # загружаем обед и полдник у 1АБВГД
 },{
   'range': 'L3:L15',  # диапазон куда грузим
     'values': y, #загружаем завтраки 1АБВГД, 2АБВГ 3АБВГ класс
