@@ -1,12 +1,32 @@
 
 # %appdata%  Roaming\gspread\service_account.json
+import time
+
 import pip
 pip.main(["install", "gspread"])
-#import sys, subprocess
-#subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'gspread'])
-import time
-import openpyxl  # pip install openpyxl gspread
+pip.main(["install", "openpyxl"])
+
 import gspread
+import openpyxl  # pip install openpyxl gspread
+
+# try:
+#   import openpyxl
+# except ImportError as e:
+#   pip.main(["install", "openpyxl"])
+#   import openpyxl
+
+# try:
+#   import gspread
+# except ImportError as e:
+#   pip.main(["install", "gspread"])
+#   import gspread
+
+# if python -c 'import pkgutil; exit(not pkgutil.find_loader("pandas"))'; then
+#     echo 'pandas found'
+# else
+#     echo 'pandas not found'
+# fi
+
 from datetime import datetime
 # starting time
 start = time.time()
