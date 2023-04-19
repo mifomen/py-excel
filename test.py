@@ -16,10 +16,31 @@ credentials = ServiceAccountCredentials.from_json_keyfile_name(
 httpAuth = credentials.authorize(httplib2.Http())
 service = apiclient.discovery.build('sheets', 'v4', http = httpAuth)
 
+list_name = 'Data'
+
 values = service.spreadsheets().values().get(
   spreadsheetId=spreadsheet_id,
-  range='A1:E10',
+  range=list_name + '!' + 'A1:E10',
   majorDimension='ROWS'
 ).execute()
 
 print(f'values = {values}')
+
+values = service.spreadsheets().values().batchUpdate(
+  spreadsheetId=spreadsheet_id,
+  body={
+    "valueInputOption": "USER_ENTERED",
+    "data": [
+      {
+       "range": "B3:C4",
+       "majorDimension": "ROWS",
+       "values": [["this b3", "this c3"], ["this b4", "this c4"]]
+        },
+      {
+        "range": "D5:E6",
+        "majorDimension": "COLUMNS",
+        "values": [["this d5", "this d6"], ["this e5", "=5+5"]]
+      }
+    ]
+  }
+).execute()
