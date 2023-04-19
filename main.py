@@ -9,6 +9,15 @@ pip.main(["install", "openpyxl"])
 import gspread
 import openpyxl  # pip install openpyxl gspread
 
+
+# from imp import find_module
+
+# def checkPythonmod(mod):
+#     try:
+#         op = find_module(mod)
+#         return True
+#     except ImportError:
+#         return False
 # try:
 #   import openpyxl
 # except ImportError as e:
