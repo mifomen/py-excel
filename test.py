@@ -16,15 +16,21 @@ credentials = ServiceAccountCredentials.from_json_keyfile_name(
 httpAuth = credentials.authorize(httplib2.Http())
 service = apiclient.discovery.build('sheets', 'v4', http = httpAuth)
 
-list_name = 'Data'
+# list_name = 'Data'
 
-values = service.spreadsheets().values().get(
-  spreadsheetId=spreadsheet_id,
-  range=list_name + '!' + 'A1:E10',
-  majorDimension='ROWS'
-).execute()
+# import asyncio
 
-print(f'values = {values}')
+def getValues(list_name,RANGE):
+  value =  service.spreadsheets().values().get(
+    spreadsheetId=spreadsheet_id,
+    range=f"{list_name}!{RANGE}",
+    # str(list_name) + '!' + str(RANGE),
+    majorDimension='ROWS'
+    ).execute()
+  return value
+
+sss = getValues('Data', 'A1:E10')
+print(f"values = {sss}")
 
 values = service.spreadsheets().values().batchUpdate(
   spreadsheetId=spreadsheet_id,
