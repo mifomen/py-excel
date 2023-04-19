@@ -6,8 +6,8 @@ import pip
 pip.main(["install", "gspread"])
 pip.main(["install", "openpyxl"])
 
-import gspread
-import openpyxl  # pip install openpyxl gspread
+import gspread# pip install openpyxl gspread
+import openpyxl
 
 
 # from imp import find_module
