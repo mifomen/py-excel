@@ -146,10 +146,9 @@ def getValues(list_name,RANGE):
 # sss = getValues('Data', 'A1:E10')
 # print(f"values = {sss}")
 
-values = service.spreadsheets().values().batchUpdate(
-  spreadsheetId=spreadsheet_id,
-  body={
-    "valueInputOption": "USER_ENTERED",
+batch_update_spreadsheet_request_body  = {
+"valueInputOption": "USER_ENTERED",
+# "totalUpdatedSheets": 2,
     "data": [
       {
         "range": "C8:C11",  # диапазон куда грузим
@@ -190,8 +189,14 @@ values = service.spreadsheets().values().batchUpdate(
       }
     ]
   }
-).execute()
 
+requestUpdateValues  = service.spreadsheets().values().batchUpdate(
+  spreadsheetId=spreadsheet_id,
+  # totalUpdatedSheets=3,
+  # sheetId ="1921065082",
+  body=batch_update_spreadsheet_request_body
+)
+responseUpdateValues = requestUpdateValues.execute()
 
 
 # end time

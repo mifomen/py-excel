@@ -68,7 +68,7 @@ gc = gspread.service_account()
 # открытие гугл таблицы с именем "PythonSheets"
 sh = gc.open("Питание Лицей")
 # Выбрать ппервый активный у нее лист
-GoogleSheets = sh.sheet1
+GoogleSheets = sh.get_worksheet(1) # Обновить на 2 листе
 
 
 def localCellToData(rangeStart, rangeStop, charSheet):
