@@ -84,7 +84,7 @@ def cellToData(rangeStart, rangeStop, charSheet):
 
 x1 = cellToData(50, 54, 'D')  # формирование обед у 2АБВГ
 x2 = cellToData(50, 54, 'E')  # формирование полдник у 2АБВГ
-y = cellToData( 5, 18, 'C')  # завтраки 1АБВГД, 2АБВГ 3АБВГ класс
+y = cellToData(5, 18, 'C')  # завтраки 1АБВГД, 2АБВГ 3АБВГ класс
 z = cellToData(18, 22, 'D')  # обеды 4АБВГ класс
 v = cellToData(22, 26, 'C')  # завтраки 5АБВГ класс
 b = cellToData(26, 33, 'D')  # обеды 6АБВГ 7АБВ класс
@@ -124,7 +124,7 @@ GoogleSheets.update("E1", today)
 GoogleSheets.batch_update([{
     'range': 'C8:C11',  # диапазон куда грузим
     'values': x1,  # загружаем обед и полдник у 2АБВГ
-},{
+}, {
     'range': 'D8:D11',  # диапазон куда грузим
     'values': x2,  # загружаем обед и полдник у 2АБВГ
 }, {
