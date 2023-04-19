@@ -66,12 +66,11 @@ def atlestCharToInt(cellValue):
     if (cellValue == '') or (cellValue == 0) or (cellValue is None):
         SS = 0
         return SS  # то вернуть пустую строку
-    else:
-        # lengthLine = len(cellValue.velue)
-        # забираем 3 последних символа, оберзаем пробелы
-        SS = cellValue[len(cellValue)-3:len(cellValue)].strip()
-        # полученную строку переводим в числовой тип данных
-        return int(SS)
+    # lengthLine = len(cellValue.velue)
+    # забираем 3 последних символа, оберзаем пробелы
+    SS = cellValue[len(cellValue)-3:len(cellValue)].strip()
+    # полученную строку переводим в числовой тип данных
+    return int(SS)
 
 # a = "Питающихся: 25Комплекты:- Завтрак 1-4 класс: 25"
 # # СТрока для тестов нахождения последних символов
