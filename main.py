@@ -1,5 +1,9 @@
 
 # %appdata%  Roaming\gspread\service_account.json
+import pip
+pip.main(["install", "gspread"])
+#import sys, subprocess
+#subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'gspread'])
 import time
 import openpyxl  # pip install openpyxl gspread
 import gspread
@@ -8,10 +12,10 @@ from datetime import datetime
 start = time.time()
 
 
-URL = "orders_monitoring_2023_04_18_13_07_20364910.xlsx"
+# URL = "orders_monitoring_2023_04_18_13_07_20364910.xlsx"
 
-# from tkinter.filedialog import askopenfilename #запрос на указание файла с данными
-# URL = askopenfilename() # запрос на указание файла с данными
+from tkinter.filedialog import askopenfilename #запрос на указание файла с данными
+URL = askopenfilename() # запрос на указание файла с данными
 
 # FILE_NAME = 'test.xlsx'
 # wb = openpyxl.reader.excel.load_workbook(filename=FILE_NAME,data_only=True)
