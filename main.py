@@ -1,4 +1,3 @@
-
 # %appdata%  Roaming\gspread\service_account.json
 # запрос на указание файла с данными
 import time
@@ -72,7 +71,7 @@ sh = gc.open("Питание Лицей")
 GoogleSheets = sh.sheet1
 
 
-def cellToData(rangeStart, rangeStop, charSheet):
+def localCellToData(rangeStart, rangeStop, charSheet):
     """Перенос данных из локальной xlsx в память питона"""
     array = []
     for i in range(rangeStart, rangeStop, 1):
@@ -82,14 +81,14 @@ def cellToData(rangeStart, rangeStop, charSheet):
     return split(array, 1)
 
 
-x1 = cellToData(50, 54, 'D')  # формирование обед у 2АБВГ
-x2 = cellToData(50, 54, 'E')  # формирование полдник у 2АБВГ
-y = cellToData(5, 18, 'C')  # завтраки 1АБВГД, 2АБВГ 3АБВГ класс
-z = cellToData(18, 22, 'D')  # обеды 4АБВГ класс
-v = cellToData(22, 26, 'C')  # завтраки 5АБВГ класс
-b = cellToData(26, 33, 'D')  # обеды 6АБВГ 7АБВ класс
-n = cellToData(33, 36, 'C')  # завтраки 8АБВ класс
-nn9 = cellToData(36, 45, 'C')  # завтраки 9АБВ 10АБВ 11АБВ класс
+x1 = localCellToData(50, 54, 'D')  # формирование обед у 2АБВГ
+x2 = localCellToData(50, 54, 'E')  # формирование полдник у 2АБВГ
+x3 = localCellToData(5, 18, 'C')  # завтраки 1АБВГД, 2АБВГ 3АБВГ класс
+x4 = localCellToData(18, 22, 'D')  # обеды 4АБВГ класс
+x5 = localCellToData(22, 26, 'C')  # завтраки 5АБВГ класс
+x6 = localCellToData(26, 33, 'D')  # обеды 6АБВГ 7АБВ класс
+x7 = localCellToData(33, 36, 'C')  # завтраки 8АБВ класс
+x8 = localCellToData(36, 45, 'C')  # завтраки 9АБВ 10АБВ 11АБВ класс
 
 
 gg = []  # формирование обед и полдник у 1АБВГД
@@ -106,8 +105,8 @@ for i in classLastNames:
             gg.append(XY)
             break
 
-gg = split(gg, 2) # сохраненный обед и полдник у 1АБВГД
-
+# сохраненный обед и полдник у 1АБВГД
+gg = split(gg, 2)
 
 currentDay = datetime.now().day
 if currentDay <= 10:
@@ -132,22 +131,22 @@ GoogleSheets.batch_update([{
     'values': gg,  # загружаем обед и полдник у 1АБВГД
 }, {
     'range': 'G35:G43',  # диапазон куда грузим
-    'values': nn9,  # загружаем обед и полдник у 1АБВГД
+    'values': x8,  # загружаем обед и полдник у 1АБВГД
 }, {
     'range': 'L3:L15',  # диапазон куда грузим
-    'values': y,  # загружаем завтраки 1АБВГД, 2АБВГ 3АБВГ класс
+    'values': x3,  # загружаем завтраки 1АБВГД, 2АБВГ 3АБВГ класс
 }, {
     'range': 'M16:M19',  # диапазон куда грузим
-    'values': z,  # загружаем обеды 4АБВГ класс
+    'values': x4,  # загружаем обеды 4АБВГ класс
 }, {
     'range': 'G21:G24',  # диапазон куда грузим
-    'values': v,  # загружаем завтраки 5АБВГ класс
+    'values': x5,  # загружаем завтраки 5АБВГ класс
 }, {
     'range': 'I25:I31',  # диапазон куда грузим
-    'values': b,  # загружаем обеды 6АБВГ 7АБВ класс
+    'values': x6,  # загружаем обеды 6АБВГ 7АБВ класс
 }, {
     'range': 'G32:G34',  # диапазон куда грузим
-    'values': n,  # загружаем завтраки 8АБВ класс
+    'values': x7,  # загружаем завтраки 8АБВ класс
 }])
 
 # end time
