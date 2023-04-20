@@ -1,5 +1,5 @@
 # pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib oauth2client
-# pip install instaa google-api-python-client google-auth-httplib2 google-auth-oauthlib oauth2client
+# pip install install google-api-python-client google-auth-httplib2 google-auth-oauthlib oauth2client
 
 import time
 # from tkinter.filedialog import askopenfilename
@@ -16,7 +16,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 # starting time
 start = time.time()
 
-URL = "orders_monitoring_2023_04_18_13_07_20364910.xlsx"
+URL = "orders_monitoring_2023_04_18_13_07_20364910.xlsx" # адресс к сайту
 
 # открываем локальную таблицу менять data_only если надо формулы
 wb = openpyxl.reader.excel.load_workbook(filename=URL, data_only=True)
