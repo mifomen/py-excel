@@ -1,3 +1,5 @@
+# pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib oauth2client
+# pip install instaa google-api-python-client google-auth-httplib2 google-auth-oauthlib oauth2client
 
 import time
 # from tkinter.filedialog import askopenfilename
@@ -147,48 +149,48 @@ def getValues(list_name,RANGE):
 # print(f"values = {sss}")
 
 batch_update_spreadsheet_request_body  = {
-"valueInputOption": "USER_ENTERED",
-# "totalUpdatedSheets": 2,
-    "data": [
-      {
-        "range": "Data!C8:C11",  # диапазон куда грузим
-        "majorDimension": "ROWS",
-        "values": x1,  # загружаем обед и полдник у 2АБВГ
-      }, {
-        "range": "Data!D8:D11",  # диапазон куда грузим
-        "majorDimension": "ROWS",
-        "values": x2,  # загружаем обед и полдник у 2АБВГ
-      }, {
-        "range": "Data!C3:D7",  # диапазон куда грузим
-        "majorDimension": "ROWS",
-        "values": gg,  # загружаем обед и полдник у 1АБВГД
-      }, {
-        "range": "Data!G35:G43",  # диапазон куда грузим
-        "majorDimension": "ROWS",
-        "values": x8,  # загружаем обед и полдник у 1АБВГД
-      }, {
-        "range": "Data!L3:L15",  # диапазон куда грузим
-        "majorDimension": "ROWS",
-        "values": x3,  # загружаем завтраки 1АБВГД, 2АБВГ 3АБВГ класс
-      }, {
-        "range": "M16:M19",  # диапазон куда грузим
-        "majorDimension": "ROWS",
-        "values": x4,  # загружаем обеды 4АБВГ класс
-      }, {
-        "range": "G21:G24",  # диапазон куда грузим
-        "majorDimension": "ROWS",
-        "values": x5,  # загружаем завтраки 5АБВГ класс
-      }, {
-        "range": "I25:I31",  # диапазон куда грузим
-        "majorDimension": "ROWS",
-        "values": x6,  # загружаем обеды 6АБВГ 7АБВ класс
-      }, {
-        "range": "G32:G34",  # диапазон куда грузим
-        "majorDimension": "ROWS",
-        "values": x7,  # загружаем завтраки 8АБВ класс
-      }
-    ]
-  }
+  "valueInputOption": "USER_ENTERED",
+  # "totalUpdatedSheets": 2,
+  "data": [
+    {
+      "range": "Data!C8:C11",  # диапазон куда грузим
+      "majorDimension": "ROWS",
+      "values": x1,  # загружаем обед и полдник у 2АБВГ
+    }, {
+      "range": "Data!D8:D11",  # диапазон куда грузим
+      "majorDimension": "ROWS",
+      "values": x2,  # загружаем обед и полдник у 2АБВГ
+    }, {
+      "range": "Data!C3:D7",  # диапазон куда грузим
+      "majorDimension": "ROWS",
+      "values": gg,  # загружаем обед и полдник у 1АБВГД
+    }, {
+      "range": "Data!G35:G43",  # диапазон куда грузим
+      "majorDimension": "ROWS",
+      "values": x8,  # загружаем обед и полдник у 1АБВГД
+    }, {
+      "range": "Data!L3:L15",  # диапазон куда грузим
+      "majorDimension": "ROWS",
+      "values": x3,  # загружаем завтраки 1АБВГД, 2АБВГ 3АБВГ класс
+    }, {
+      "range": "M16:M19",  # диапазон куда грузим
+      "majorDimension": "ROWS",
+      "values": x4,  # загружаем обеды 4АБВГ класс
+    }, {
+      "range": "G21:G24",  # диапазон куда грузим
+      "majorDimension": "ROWS",
+      "values": x5,  # загружаем завтраки 5АБВГ класс
+    }, {
+      "range": "I25:I31",  # диапазон куда грузим
+      "majorDimension": "ROWS",
+      "values": x6,  # загружаем обеды 6АБВГ 7АБВ класс
+    }, {
+      "range": "G32:G34",  # диапазон куда грузим
+      "majorDimension": "ROWS",
+      "values": x7,  # загружаем завтраки 8АБВ класс
+    }
+  ]
+}
 
 requestUpdateValues  = service.spreadsheets().values().batchUpdate(
   spreadsheetId=spreadsheet_id,
