@@ -111,5 +111,21 @@ metaData = metaData[2]
 
 
 import json
-file = open("teachers.json")
+file = open("./teachers.json", encoding="utf8")
 ny = json.load(file)
+
+print(ny[0]['upQualification'])
+# ny[0]['upQualification'] = 'upQualification'
+# print(ny[0]['upQualification'])
+
+St = ny[0]['upQualification']
+print(f"St = {St}")
+
+# St.replace(", \"[, maxcount])
+# St.replace(", \")
+json.dumps(St)
+
+print(f"St = {St}")
+
+# for i in range(0,len(ny),65):
+  # print(ny[i]['upQualification'])
