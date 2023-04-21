@@ -89,34 +89,40 @@ def updatesValues(idSheet):
   )
   return requestUpdateValues.execute()
 
-# updatesValues(spreadsheet_id2)
+# metaData = updatesValues(spreadsheet_id2)
 
-# end time
-end = time.time()
 
-print(f"Execution time of the program is- {end-start:5.3f} s.")
-
-metaData = list(ss1.values());
-metaData = metaData[2]
-
+# metaData = list(ss1.values())
+metaData = ss1['values']
+print(type(metaData))
+# ['values'][0]
+# metaData = metaData[1]
 
 
 import json
 file = open("./teachers.json", encoding="utf8")
 itemList = json.load(file)
 
-for item in itemList:
-  item['upQualification'].replace('"', '\\"')
+print(type(itemList))
 
+# for item in itemList:
+#   if item['fio'] == metData[0]:
+#     item['upQualification'] = metaData[1]
+#     item['upQualification'].replace('"', '\\"')
 
-# St = itemList[1]['upQualification']
-# print(f"St = {St}")
-# St.replace('"', '\\"') # work this
+for metData in ss1['values']:
+  for item in itemList:
+    # print(F"metData = {metData[0]}")
+    if item['fio'] == metData[0]:
+      item['upQualification'] = str(metData[1].replace('"', '\\"'))
+      break
+      # item['upQualification'].replace('"', '\\"')
 
 
 with io.open('data.json', 'w', encoding='utf-8') as f:
   f.write(json.dumps(itemList, indent=2, sort_keys=False,ensure_ascii=False))
 
+# end time
+end = time.time()
 
-# for i in range(0,len(ny),65):
-  # print(ny[i]['upQualification'])
+print(f"Execution time of the program is- {end-start:5.3f} s.")
