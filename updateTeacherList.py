@@ -67,7 +67,7 @@ updatesRangeSheet = 'A2:B3'
 majDimension = "ROWS"
 
 ss1 = getValues(spreadsheetId, listName, updatesRangeSheet, majDimension)
-print(ss1)
+# print(ss1)
 
 
 metaData = []
@@ -105,5 +105,11 @@ metaData = list(ss1.values());
 metaData = metaData[2]
 # metaData = split(metaData,1)
 
-print(f"metaData = {metaData[0][0]}")
+# print(f"metaData = {metaData[0][0]}") #--right
+
 # print(f"metaData = {metaData}")
+
+
+import json
+file = open("teachers.json")
+ny = json.load(file)
