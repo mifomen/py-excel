@@ -123,8 +123,8 @@ print(f"St = {St}")
 
 # St.replace(", \"[, maxcount])
 # St.replace(", \")
-json.dumps(St)
-
+# json.dumps(St)
+St.replace('"', '\\"')
 print(f"St = {St}")
 
 # for i in range(0,len(ny),65):
