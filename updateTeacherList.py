@@ -1,7 +1,6 @@
 # pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib oauth2client
 # pip install install google-api-python-client google-auth-httplib2 google-auth-oauthlib oauth2client
-
-import time
+import io, time
 # from tkinter.filedialog import askopenfilename
 from datetime import datetime
 # import openpyxl
@@ -96,41 +95,27 @@ def updatesValues(idSheet):
 end = time.time()
 
 print(f"Execution time of the program is- {end-start:5.3f} s.")
-# print(f"ss1 = {type(ss1)}")
-# print(f"ss1 = {ss1.items()}")
-# print(f"ss1 = {ss1.keys()}")
-# print(f"ss1 = {ss1.values()}")
 
 metaData = list(ss1.values());
 metaData = metaData[2]
-# metaData = split(metaData,1)
 
-# print(f"metaData = {metaData[0][0]}") #--right
-
-# print(f"metaData = {metaData}")
 
 
 import json
 file = open("./teachers.json", encoding="utf8")
-ny = json.load(file)
+itemList = json.load(file)
 
-print(ny[0]['upQualification'])
-# ny[0]['upQualification'] = 'upQualification'
-# print(ny[0]['upQualification'])
-
-St = ny[0]['upQualification']
-print(f"St = {St}")
-
-# St.replace(", \"[, maxcount])
-# St.replace(", \")
-# json.dumps(St)
-St.replace('"', '\\"') # work this
-print(f"St = {St}")
+for item in itemList:
+  item['upQualification'].replace('"', '\\"')
 
 
-import io
-with io.open('data.txt', 'w', encoding='utf-8') as f:
-  f.write(json.dumps(St, ensure_ascii=False))
+# St = itemList[1]['upQualification']
+# print(f"St = {St}")
+# St.replace('"', '\\"') # work this
+
+
+with io.open('data.json', 'w', encoding='utf-8') as f:
+  f.write(json.dumps(itemList, indent=2, sort_keys=False,ensure_ascii=False))
 
 
 # for i in range(0,len(ny),65):
