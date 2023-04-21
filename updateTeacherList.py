@@ -124,8 +124,14 @@ print(f"St = {St}")
 # St.replace(", \"[, maxcount])
 # St.replace(", \")
 # json.dumps(St)
-St.replace('"', '\\"')
+St.replace('"', '\\"') # work this
 print(f"St = {St}")
+
+
+import io
+with io.open('data.txt', 'w', encoding='utf-8') as f:
+  f.write(json.dumps(St, ensure_ascii=False))
+
 
 # for i in range(0,len(ny),65):
   # print(ny[i]['upQualification'])
