@@ -153,23 +153,23 @@ batch_update_spreadsheet_request_body  = {
   # "totalUpdatedSheets": 2,
   "data": [
     {
-      "range": "Data!C8:C11",  # диапазон куда грузим
+      "range": "C8:C11",  # диапазон куда грузим
       "majorDimension": "ROWS",
       "values": x1,  # загружаем обед и полдник у 2АБВГ
     }, {
-      "range": "Data!D8:D11",  # диапазон куда грузим
+      "range": "D8:D11",  # диапазон куда грузим
       "majorDimension": "ROWS",
       "values": x2,  # загружаем обед и полдник у 2АБВГ
     }, {
-      "range": "Data!C3:D7",  # диапазон куда грузим
+      "range": "C3:D7",  # диапазон куда грузим
       "majorDimension": "ROWS",
       "values": gg,  # загружаем обед и полдник у 1АБВГД
     }, {
-      "range": "Data!G35:G43",  # диапазон куда грузим
+      "range": "G35:G43",  # диапазон куда грузим
       "majorDimension": "ROWS",
       "values": x8,  # загружаем обед и полдник у 1АБВГД
     }, {
-      "range": "Data!L3:L15",  # диапазон куда грузим
+      "range": "L3:L15",  # диапазон куда грузим
       "majorDimension": "ROWS",
       "values": x3,  # загружаем завтраки 1АБВГД, 2АБВГ 3АБВГ класс
     }, {
