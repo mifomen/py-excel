@@ -103,7 +103,7 @@ print(f"Execution time of the program is- {end-start:5.3f} s.")
 
 metaData = list(ss1.values());
 metaData = metaData[2]
-metaData = split(metaData,4)
+# metaData = split(metaData,1)
 
-print(f"metaData = {metaData}")
+print(f"metaData = {metaData[0][0]}")
 # print(f"metaData = {metaData}")
