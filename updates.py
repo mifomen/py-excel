@@ -27,18 +27,16 @@ print('Start work')
 # GoogleSheets = sh.sheet1
 
 
-def localCellToData(rangeStart, rangeStop, charSheet):
-    """Перенос данных из локальной xlsx в память питона"""
-    array = []
-    for i in range(rangeStart, rangeStop, 1):
-        # завтраки 1АБВГД, 2АБВГ 3АБВГ класс
-        array.append(atlestCharToInt(sheetLocal[str(charSheet) + str(i)].value))
-    # y = split(array, 1)
-    # return array
-    return split(array, 1)
+def split(arr, size):
+    """Функция для разбиения листа на под листы, чтобы отправить на страницу"""
+    arrs = []
+    while len(arr) > size:
+        pice = arr[:size]
+        arrs.append(pice)
+        arr = arr[size:]
+    arrs.append(arr)
+    return arrs
 
-# Ввод информации в гугл таблицу
-# GoogleSheets.update("E1", today)
 
 CREDENTIALS_FILE = "../service_account.json"
 
@@ -54,7 +52,7 @@ service = apiclient.discovery.build('sheets', 'v4', http = httpAuth)
 # list_name = 'Data'
 # import asyncio
 
-def getValues(sheet_ID,listName,RANGE, DIMENSION):
+def getValues(sheet_ID, listName, RANGE, DIMENSION):
   value = service.spreadsheets().values().get(
     spreadsheetId=sheet_ID,
     range=f"{listName}!{RANGE}",
@@ -65,40 +63,49 @@ def getValues(sheet_ID,listName,RANGE, DIMENSION):
 spreadsheet_id1 = '1zBe_cL1IkwyK9U0zmhFGb5H5m8iWqYhS5PaCmpFNEMU'
 spreadsheet_id2 = '1qmqhTdc66yO3SKjMipQ0sIG1cevqY08O0sjSUvLH414'
 
-updatesRangeSheet = 'A1:G11'
+updatesRangeSheet1 = 'A1:A11'
+updatesRangeSheet2 = 'A12:G22'
 listName1 = 'Data1'
 listName2 = 'Data2'
 majDimension = "ROWS"
 
-ss1 = getValues(spreadsheet_id1, listName1, updatesRangeSheet, majDimension)
+ss1 = getValues(spreadsheet_id1, listName1, updatesRangeSheet1, majDimension)
 print()
-ss2 = getValues(spreadsheet_id2, listName2, updatesRangeSheet, majDimension)
+ss2 = getValues(spreadsheet_id2, listName2, updatesRangeSheet1, majDimension)
 
-print(f"ss1 = {ss1}")
+print(f"ss1 = {type(ss1)}")
+print(f"ss1 = {ss1.items()}")
+print(f"ss1 = {ss1.keys()}")
+print(f"ss1 = {ss1.values()}")
+
+metaData = list(ss1.values());
+metaData = metaData[2]
+# metaData = split(metaData,1)
+print(f"metaData = {metaData}")
+
+print()
 print(f"ss2 = {ss2}")
-
+print()
 
 batch_update_spreadsheet_request_body  = {
   "valueInputOption": "USER_ENTERED",
-  # "totalUpdatedSheets": 2,
   "data": [
     {
-      "range": "Data2!" + updatesRangeSheet,  # диапазон куда грузим
+      "range": "A13:A24",  # диапазон куда грузим
       "majorDimension": majDimension,
-      "values": ss1,  # загружаем обед и полдник у 2АБВГ
+      "values": metaData,  # загружаем обед и полдник у 2АБВГ
     }
   ]
 }
 
-
-def updateValuesInGoogleSheets(spreadsheet_id):
+def updatesValues(idSheet):
   requestUpdateValues = service.spreadsheets().values().batchUpdate(
-    spreadsheetId=spreadsheet_id,
+    spreadsheetId = idSheet,
     body = batch_update_spreadsheet_request_body
-  ).execute()
+  )
+  return requestUpdateValues.execute()
 
-updateValuesInGoogleSheets(spreadsheet_id2)
-
+updatesValues(spreadsheet_id2)
 # end time
 end = time.time()
 

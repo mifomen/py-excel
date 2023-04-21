@@ -194,8 +194,6 @@ batch_update_spreadsheet_request_body  = {
 
 requestUpdateValues  = service.spreadsheets().values().batchUpdate(
   spreadsheetId=spreadsheet_id,
-  # totalUpdatedSheets=3,
-  # sheetId ="1921065082",
   body=batch_update_spreadsheet_request_body
 )
 responseUpdateValues = requestUpdateValues.execute()
