@@ -62,7 +62,7 @@ def getValues(sheet_ID, listName, RANGE, DIMENSION):
 spreadsheetId = '1fCLe7lzyYB9NMm8iQxXUzHzeMOE4BP1sYbJJheGV9j4'
 listName = 'КУРСЫ'
 
-updatesRangeSheet = 'A2:B3'
+updatesRangeSheet = 'A2:B5'
 majDimension = "ROWS"
 
 ss1 = getValues(spreadsheetId, listName, updatesRangeSheet, majDimension)
@@ -94,7 +94,7 @@ def updatesValues(idSheet):
 
 # metaData = list(ss1.values())
 metaData = ss1['values']
-print(type(metaData))
+print(len(metaData))
 # ['values'][0]
 # metaData = metaData[1]
 
@@ -114,7 +114,9 @@ for metData in ss1['values']:
   for item in itemList:
     # print(F"metData = {metData[0]}")
     if item['fio'] == metData[0]:
+      # print(item['upQualification'])
       item['upQualification'] = str(metData[1].replace('"', '\\"'))
+      # print(f"str(metData[1] = {str(metData[1].replace('"', '\\"'))}")
       break
       # item['upQualification'].replace('"', '\\"')
 
